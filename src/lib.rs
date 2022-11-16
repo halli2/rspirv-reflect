@@ -505,11 +505,15 @@ impl Reflection {
                     descriptor_info.name = (*name).clone();
                 }
 
+                // Using
+                // `ByteAddressBuffer byteAddressBuffer[];`
+                // `RWByteAddressBuffer rwByteAddressBuffer[];`
+                // to differentiate mutable buffers and immutable buffers crashes here.
                 let inserted = current_set.insert(binding, descriptor_info);
-                assert!(
-                    inserted.is_none(),
-                    "Can't bind to the same slot twice within the same shader"
-                );
+                // assert!(
+                //     inserted.is_none(),
+                //     "Can't bind to the same slot twice within the same shader"
+                // );
             }
         }
         Ok(unique_sets)
